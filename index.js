@@ -12,8 +12,20 @@ inquirer.prompt(prompts)
     return inquirer.prompt(promptsConfig.results(results))
 })
 .then(torrentSelected => {
-    // only macos
-    exec(`open ${torrentSelected.magnetLink}`)
+    let open
+    switch (process.platform) {
+        case 'linux':
+            // TO-DO: maybe in some GNU/Linux distribution xdg-open don't work...
+            open = 'xdg-open'
+            break
+        case 'win32':
+            open = 'start'
+            break
+        default:
+            open = 'open'
+            break
+    }
+    exec(`${open} ${torrentSelected.magnetLink}`)
 })
 .catch(err => {
     console.log(err)
