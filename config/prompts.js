@@ -4,7 +4,11 @@ const sites = {
     message: 'Sites to search in:',
     choices: [{
         name: 'The Pirate Bay',
-        checked: true
+        checked: true,
+        disabled: false
+    }, {
+        name: 'Torrentz',
+        disabled: false
     }, {
         name: 'RARBG',
         disabled: true
@@ -40,7 +44,9 @@ const results = (searchResults) => {
     }
 
     searchResults.forEach(result => {
-        const validMagnetLink = result.magnetLink.match(/magnet:\?xt=urn:[a-z0-9]{20,50}/i)
+        const validMagnetLink = (result.magnetLink)
+            ? result.magnetLink.match(/magnet:\?xt=urn:[a-z0-9]{20,50}/i)
+            : false
 
         promptResults.choices.push({
             // name: `${result.name} Size: ${result.size}, L/S: ${result.leechers}/${result.seeders}`,
