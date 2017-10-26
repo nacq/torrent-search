@@ -4,6 +4,7 @@ const promptsConfig = require('./config/prompts')
 const scrapper = require('./modules/scrapper')
 const prompts = [promptsConfig.sites, promptsConfig.questions]
 
+process.stdout.write('\033c')
 inquirer.prompt(prompts)
 .then(answer => {
     return scrapper.getResults(answer.sites, answer.search)
