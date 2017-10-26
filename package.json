@@ -1,0 +1,16 @@
+{
+  "name": "torrent-search",
+  "version": "1.0.0",
+  "description": "Console torrent searcher",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^3.3.0",
+    "scrape-it": "^3.3.3",
+    "torrent-stream": "^1.0.3"
+  }
+}
