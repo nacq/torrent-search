@@ -1,7 +1,7 @@
+const exec = require('child_process').exec
 const inquirer = require('inquirer')
 const promptsConfig = require('./config/prompts')
 const scrapper = require('./modules/scrapper')
-const torrentStream = require('torrent-stream')
 const prompts = [promptsConfig.sites, promptsConfig.questions]
 
 inquirer.prompt(prompts)
@@ -12,12 +12,8 @@ inquirer.prompt(prompts)
     return inquirer.prompt(promptsConfig.results(results))
 })
 .then(torrentSelected => {
-    console.log(torrentSelected)
-
-    // torrentStream(`magnet:${torrentSelected.magnetLink}`)
-    // .on('ready', () => {
-        // console.log(torrentStream(`magnet:${torrentSelected}`).files)
-    // })
+    // only macos
+    exec(`open ${torrentSelected.magnetLink}`)
 })
 .catch(err => {
     console.log(err)

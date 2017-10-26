@@ -10,7 +10,6 @@
   "license": "ISC",
   "dependencies": {
     "inquirer": "^3.3.0",
-    "scrape-it": "^3.3.3",
-    "torrent-stream": "^1.0.3"
+    "scrape-it": "^3.3.3"
   }
 }
