@@ -47,10 +47,10 @@ const results = (searchResults) => {
         const validMagnetLink = (result.magnetLink)
             ? result.magnetLink.match(/magnet:\?xt=urn:[a-z0-9]{20,50}/i)
             : false
+        const magnetOrLink = (validMagnetLink) ? `${result.magnetLink}` : `${result.link}`
 
         promptResults.choices.push({
-            // name: `${result.name} Size: ${result.size}, L/S: ${result.leechers}/${result.seeders}`,
-            name: (validMagnetLink) ? `${result.magnetLink}` : `${result.link}`
+            name: `${magnetOrLink} | Size: ${result.size}, L/S: ${result.leechers}/${result.seeders}`
         })
     })
 
