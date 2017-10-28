@@ -13,10 +13,10 @@ module.exports = {
                     selector: "dd span:nth-child(3)"
                 },
                 seeders: {
-                    selector: "dd span:nth-child(4)"
+                    selector: "dd span:nth-child(5)"
                 },
                 leechers: {
-                    selector: "dd span:nth-child(5)"
+                    selector: "dd span:nth-child(4)"
                 },
                 link: {
                     selector: "dt a",
