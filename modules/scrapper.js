@@ -1,16 +1,23 @@
+const sitesConfig = require('../config/sites')
 const scrapeIt = require('scrape-it')
-const tpbConfig = require('../config/sites/tpb')
 
 function getResults(sites, search) {
-    const url = `https://proxyproxyproxy.nl/s/?q=${encodeURIComponent(search)}&page=0&orderby=99`
+    const sitesToScrap = sites.map(site => {
+        const siteConfig = sitesConfig(site)
 
-    return new Promise((resolve, reject) => {
-        scrapeIt(url, tpbConfig)
-        .then(data => resolve(data.result))
-        .catch(err => {
-          console.log(err)
+        return scrapeIt(siteConfig.url(search), siteConfig.scrapeConfig)
+    })
 
-          reject(err)
+    return new Promise(resolve => {
+        Promise.all(sitesToScrap)
+        .then(scrapedSitesData => {
+            let results = []
+
+            scrapedSitesData.forEach(scrapedSiteData => {
+                results = results.concat(scrapedSiteData.result)
+            })
+
+            resolve(results)
         })
     })
 }
