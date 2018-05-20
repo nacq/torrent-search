@@ -12,7 +12,7 @@ inquirer.prompt(prompts)
 .then(answer => scrapper.getResults(answer.sites, answer.search))
 .then(results => inquirer.prompt(promptsConfig.results(results)))
 .then(torrentSelected => {
-    let open = argv.c || argv.client
+    let open = typeof argv.c == 'string' && argv.c || typeof argv.client == 'string' && argv.client
 
     if (!open) {
         switch (process.platform) {
